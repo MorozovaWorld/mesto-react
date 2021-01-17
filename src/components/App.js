@@ -39,6 +39,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
     setImgPopupOpen(false);
+    setTimeout(setSelectedCard, 1000, null);
   }
 
   return (

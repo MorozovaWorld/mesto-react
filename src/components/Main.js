@@ -4,7 +4,7 @@ import api from '../utils/Api.js';
 import React, { useState, useEffect } from 'react';
 import Card from "./Card";
 
-function Main(props) {
+function Main({onEditAvatar, onEditProfile, onAddPlace, onImageClick }) {
   const [userName, setUserName] = useState('');
   const [userDescription , setUserDescription ] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
@@ -23,8 +23,8 @@ function Main(props) {
         setCards(initialCardsData);
       })
       .catch((err) => console.log(err))
-    }
-  )
+    }, []
+  );
 
   return (
     <main>
@@ -32,7 +32,7 @@ function Main(props) {
         <div className="profile__image-div">
           <img className="profile__image" alt="аватар владельца аккаунта" src={userAvatar} />
           <div className="profile__image-edit-btn-div">
-            <button className="profile__image-edit-btn" type="submit" onClick={props.onEditAvatar}>
+            <button className="profile__image-edit-btn" type="submit" onClick={onEditAvatar}>
               <img src={editBtn} alt="иконка редактирования фотографии профиля" className="profile__image-edit-btn-icon" />
             </button>
           </div>
@@ -40,13 +40,13 @@ function Main(props) {
         <div className="profile__info">
           <div className="profile__title-edit">
             <h1 className="profile__info-title">{userName}</h1>
-            <button className="profile__popup-button-open opacity" type="button" onClick={props.onEditProfile}>
+            <button className="profile__popup-button-open opacity" type="button" onClick={onEditProfile}>
               <img src={editBtn} alt="иконка редактирования профиля" className="profile__popup-button-open-icon" />
             </button>
           </div>
           <p className="profile__info-subtitle">{userDescription}</p>
         </div>
-        <button className="addpic-popup-button-open opacity" type="button" onClick={props.onAddPlace}>
+        <button className="addpic-popup-button-open opacity" type="button" onClick={onAddPlace}>
           <img src={addPicBtn} alt="кнопка добавить" />
         </button>
       </section>
@@ -54,7 +54,7 @@ function Main(props) {
         <ul className="cards">
         {
           cards.map(card => 
-            <Card card={card} key={card._id} onImageClick={props.onImageClick} />
+            <Card card={card} key={card._id} onImageClick={onImageClick} />
           )
         }
         </ul>

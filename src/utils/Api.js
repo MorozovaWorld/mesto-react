@@ -8,9 +8,9 @@ class Api {
     this._userUrl = config.userUrl;
     this._avatarUrl = config.avatarUrl;
   }
-
+  
   _resProcess(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status}`));
   }
 
   getUserInfo() {
