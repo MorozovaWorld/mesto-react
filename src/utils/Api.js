@@ -83,13 +83,14 @@ class Api {
     .then(this._resProcess);
   }
 
-  unlikeCard(card) {
+  dislikeCard(card) {
     return fetch(`${this._url}${this._cardsUrl}/likes/${card._id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
     .then(this._resProcess);
   }
+
 }
 
 const api = new Api({
