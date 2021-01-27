@@ -21,19 +21,19 @@ class Api {
     .then(this._resProcess);
   }
 
-  editUserInfo(data) {
+  setUserInfo({name, info}) {
     return fetch(`${this._url}${this._usersUrl}${this._userUrl}`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.info
+        name: name,
+        about: info
       })
     })
     .then(this._resProcess);
   }
 
-  editUserPic(data) {
+  setUserAvatar(data) {
     return fetch(`${this._url}${this._usersUrl}${this._avatarUrl}`, {
       method: 'PATCH',
       headers: this._headers,

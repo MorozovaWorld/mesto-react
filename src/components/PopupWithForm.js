@@ -1,10 +1,10 @@
 import closeBtn from '../images/Close-Icon.svg';
 
-function PopupWithForm({name, isOpen, title, children, btnTitle, onClose}) {
+function PopupWithForm({name, isOpen, title, children, btnTitle, onClose, onSubmit }) {
   return (
     <div className={`popup popup_action_${name}` + (isOpen ? ' popup_opened' : '')}>
       <div className="popup__container">
-        <form className={`popup__form popup__form_action_${name}`} name={`name`}>
+        <form className={`popup__form popup__form_action_${name}`} name={`name`} onSubmit={onSubmit}>
           <fieldset className="popup__input-text-form">
             <legend className="popup__title">{title}</legend>
             {children}
