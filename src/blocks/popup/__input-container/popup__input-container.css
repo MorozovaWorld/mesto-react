@@ -2,8 +2,10 @@
   min-height: 70px;
   width: 100%;
   position: relative;
+  margin-top: 50px;
 }
 
 .popup__input-container:last-child {
   min-height: 0;
+  margin-top: 0;
 }

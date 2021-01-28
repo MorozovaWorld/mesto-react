@@ -10,6 +10,12 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
     onUpdateAvatar({
       link: avatarRef.current.value,
     });
+
+    handleClear();
+  }
+
+  function handleClear() {
+    avatarRef.current.value = '';
   }
 
   return (
