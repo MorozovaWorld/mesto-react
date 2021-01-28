@@ -136,7 +136,6 @@ function App() {
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
         <DeleteCardPopup isOpen={isConfirmCardDeletePopupOpen} onClose={closeAllPopups} onSubmitCardDelete={handleCardDelete} card={cardToDelete} />
-        <PopupWithForm title='Вы уверены?' name='confirm-delete' btnTitle='Да' />
         <ImagePopup card={selectedCard} onImageClose={closeAllPopups} isOpen={isImgPopupOpen} />
         </div>
       </div>
