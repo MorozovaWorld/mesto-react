@@ -6,7 +6,6 @@ import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import PopupWithForm from './PopupWithForm';
 import DeleteCardPopup from './DeleteCardPopup';
 import '../index.css';
 import React, { useState, useEffect } from 'react';
@@ -64,20 +63,20 @@ function App() {
     api.likeCard(card).then((newCard) => {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       setCards(newCards);
-    }) : 
+    }).catch((err) => console.log(err)) : 
     api.dislikeCard(card).then((newCard) => {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       setCards(newCards);
-    });
+    }).catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
       const newCards = cards.filter(c => c._id !== card._id);
       setCards(newCards);
-    });
-
-    setConfirmCardDeletePopupOpen(false);
+    })
+    .then(() => setConfirmCardDeletePopupOpen(false))
+    .catch((err) => console.log(err));
   }
 
   const handleCardClick  = ({...card}) => {
@@ -90,9 +89,8 @@ function App() {
     .then((userData) => {
       setCurrentUser({...currentUser, name: userData.name, about: userData.about });
     })
+    .then(() => setEditProfilePopupOpen(false))
     .catch((err) => console.log(err));
-
-    setEditProfilePopupOpen(false);
   }
 
   const handleUpdateAvatar  = ({link}) => {
@@ -100,9 +98,8 @@ function App() {
     .then((userData) => {
       setCurrentUser({...currentUser, avatar: userData.avatar });
     })
+    .then(() => setEditAvatarPopupOpen(false))
     .catch((err) => console.log(err));
-
-    setEditAvatarPopupOpen(false);
   }
 
   const handleAddPlaceSubmit  = ({name, link}) => {
@@ -110,9 +107,8 @@ function App() {
     .then((newCard) => {
       setCards([newCard, ...cards]);
     })
+    .then(() => setAddPlacePopupOpen(false))
     .catch((err) => console.log(err));
-
-    setAddPlacePopupOpen(false);
   }
 
   const closeAllPopups = () => {
